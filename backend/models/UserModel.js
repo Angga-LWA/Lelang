@@ -51,6 +51,20 @@ const Users = db.define('users',{
             notEmpty: true,
         }
     },
+    profile_image:{
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate:{
+            notEmpty: true,
+        }
+    },
+    ktp:{
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate:{
+            notEmpty: true,
+        }
+    },
     role:{
         type: DataTypes.STRING,
         allowNull: false,
@@ -58,6 +72,7 @@ const Users = db.define('users',{
             notEmpty: true,
         }
     }
+
 },{
     freezeTableName: true
 });
