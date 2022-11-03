@@ -12,7 +12,18 @@ export const getUsers = async(req, res) => {
     }
 }
 
-export const getUserById = (req, res) => {
+export const getUserById = async(req, res) => {
+    try {
+        const response = await User.findOne({
+            attributes:['id','username','firstname','last_name','email','password','flag_active','nik','npwp','flag_active','created_by'],
+            where: {
+                id: req.params.id
+            }
+        });
+        res.status(200).json(response);
+    } catch (error) {
+        res.status(500).json({msg: error.message});
+    }
     
 }
 
