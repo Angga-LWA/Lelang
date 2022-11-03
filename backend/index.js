@@ -2,9 +2,14 @@ import express from "express";
 import cors from "cors";
 import session from "express-session";
 import dotenv from "dotenv";
+import db from "./config/Database";
 dotenv.config();
 
 const app = express();
+
+(async() => {
+    await db.sync();
+})();
 
 app.use(session({
     secret: process.env.SESS_SECRET,
