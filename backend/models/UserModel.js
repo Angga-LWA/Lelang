@@ -4,14 +4,6 @@ import db from "../config/Database.js";
 const { DataTypes } = Sequelize;
 
 const Users = db.define('users',{
-    uuid:{
-        type: DataTypes.STRING,
-        defaultValue: DataTypes.UUIDV4,
-        allowNull: false,
-        validate:{
-            notEmpty: true
-        }
-    },
     username:{
         type: DataTypes.STRING,
         allowNull: false,
@@ -20,7 +12,7 @@ const Users = db.define('users',{
             len: [3, 100]
         }
     },
-    firstname:{
+    first_name:{
         type: DataTypes.STRING,
         allowNull: false,
         validate:{
@@ -28,7 +20,7 @@ const Users = db.define('users',{
             len: [3, 100]
         }
     },
-    lastname:{
+    last_name:{
         type: DataTypes.STRING,
         allowNull: false,
         validate:{
@@ -36,6 +28,13 @@ const Users = db.define('users',{
             len: [3, 100]
         }
     },
+    // profile_img:{
+    //     type: DataTypes.STRING,
+    //     allowNull: false,
+    //     validate:{
+    //         notEmpty: true
+    //     }
+    // },
     email:{
         type: DataTypes.STRING,
         allowNull: false,
@@ -48,30 +47,47 @@ const Users = db.define('users',{
         type: DataTypes.STRING,
         allowNull: false,
         validate:{
-            notEmpty: true,
+            notEmpty: true
         }
     },
-    profile_image:{
+    flag_active:{
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate:{
+            notEmpty: true
+        }
+    },
+    nik:{
         type: DataTypes.STRING,
         allowNull: false,
         validate:{
             notEmpty: true,
+            len: [3, 100]
         }
     },
-    ktp:{
+    npwp:{
         type: DataTypes.STRING,
         allowNull: false,
         validate:{
             notEmpty: true,
+            len: [3, 100]
         }
     },
-    role:{
+    created_by:{
         type: DataTypes.STRING,
         allowNull: false,
         validate:{
             notEmpty: true,
+            len: [3,100]
         }
     }
+    // remember_token:{
+    //     type: DataTypes.STRING,
+    //     allowNull: false,
+    //     validate:{
+    //         notEmpty: true
+    //     }
+    // }
 },{
     freezeTableName: true
 });
