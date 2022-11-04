@@ -7,6 +7,7 @@ import UserRoute from "./routes/UserRoute.js";
 import ProductRoute from "./routes/ProductRoute.js";
 import CategoryRoute from "./routes/CategoryRoute.js";
 import RegionRoute from "./routes/RegionRoute.js";
+import EntityRoute from "./routes/EntityRoute.js";
 dotenv.config();
 
 const app = express();
@@ -36,6 +37,7 @@ app.use(UserRoute);
 app.use(ProductRoute);
 app.use(CategoryRoute);
 app.use(RegionRoute);
+app.use(EntityRoute);
 
 app.listen(process.env.APP_PORT, () => {
     console.log('Server Lelang up and runnng!!');
