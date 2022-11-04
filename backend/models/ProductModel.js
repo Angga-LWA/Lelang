@@ -3,7 +3,7 @@ import db from "../config/Database.js";
 
 const { DataTypes } = Sequelize;
 
-const Products = db.define('product',{
+const Products = db.define('mproduct',{
     id_region:{
         type: DataTypes.INTEGER,
         allowNull: false,
