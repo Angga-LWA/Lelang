@@ -4,15 +4,31 @@ import db from "../config/Database.js";
 const { DataTypes } = Sequelize;
 
 const Products = db.define('product',{
-    uuid:{
-        type: DataTypes.STRING,
-        defaultValue: DataTypes.UUIDV4,
+    id_region:{
+        type: DataTypes.INTEGER,
         allowNull: false,
         validate:{
-            notEmpty: true
+            notEmpty: true,
+            len: [3, 100]
         }
     },
-    nama_product:{
+    id_entity:{
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate:{
+            notEmpty: true,
+            len: [3, 100]
+        }
+    },
+    id_branch:{
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        validate:{
+            notEmpty: true,
+            len: [3, 100]
+        }
+    },
+    prdcode:{
         type: DataTypes.STRING,
         allowNull: false,
         validate:{
@@ -20,7 +36,7 @@ const Products = db.define('product',{
             len: [3, 100]
         }
     },
-    firstname:{
+    prdname:{
         type: DataTypes.STRING,
         allowNull: false,
         validate:{
@@ -28,7 +44,15 @@ const Products = db.define('product',{
             len: [3, 100]
         }
     },
-    lastname:{
+    // prdimg:{
+    //     type: DataTypes.STRING,
+    //     allowNull: false,
+    //     validate:{
+    //         notEmpty: true,
+    //         len: [3, 100]
+    //     }
+    // },
+    prddesc:{
         type: DataTypes.STRING,
         allowNull: false,
         validate:{
@@ -36,40 +60,52 @@ const Products = db.define('product',{
             len: [3, 100]
         }
     },
-    email:{
-        type: DataTypes.STRING,
+    id_category:{
+        type: DataTypes.INTEGER,
         allowNull: false,
         validate:{
             notEmpty: true,
-            isEmail: true
+            len: [3, 100]
         }
     },
-    password:{
-        type: DataTypes.STRING,
+    price:{
+        type: DataTypes.INTEGER,
         allowNull: false,
         validate:{
             notEmpty: true,
+            len: [3, 100]
         }
     },
-    profile_image:{
-        type: DataTypes.STRING,
+    min_multiples:{
+        type: DataTypes.INTEGER,
         allowNull: false,
         validate:{
             notEmpty: true,
+            len: [3, 100]
         }
     },
-    ktp:{
+    location:{
         type: DataTypes.STRING,
         allowNull: false,
         validate:{
             notEmpty: true,
+            len: [3, 100]
         }
     },
-    role:{
+    auction_date:{
         type: DataTypes.STRING,
         allowNull: false,
         validate:{
             notEmpty: true,
+            len: [3, 100]
+        }
+    },
+    created_by:{
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate:{
+            notEmpty: true,
+            len: [3,100]
         }
     }
 },{
