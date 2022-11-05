@@ -12,6 +12,7 @@ import BranchRoute from "./routes/BranchRoute.js";
 import BidRegistRoute from "./routes/BidRegistRoute.js";
 import BidOrdRoute from "./routes/BidOrdRoute.js";
 import BidLogsRoute from "./routes/BidLogsRoute.js";
+import MigrationsRoute from "./routes/MigrationsRoute.js"
 dotenv.config();
 
 const app = express();
@@ -46,6 +47,7 @@ app.use(BranchRoute);
 app.use(BidRegistRoute);
 app.use(BidOrdRoute);
 app.use(BidLogsRoute);
+app.use(MigrationsRoute);
 
 app.listen(process.env.APP_PORT, () => {
     console.log('Server Lelang up and runnng!!');
