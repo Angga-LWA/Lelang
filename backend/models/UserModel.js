@@ -36,6 +36,13 @@ const Users = db.define('users',{
             len: [3, 100]
         }
     },
+    // profile_img:{
+    //     type: DataTypes.STRING,
+    //     allowNull: false,
+    //     validate:{
+    //         notEmpty: true
+    //     }
+    // },
     email:{
         type: DataTypes.STRING,
         allowNull: false,
@@ -51,20 +58,13 @@ const Users = db.define('users',{
             notEmpty: true
         }
     },
-    // profile_img:{
-    //     type: DataTypes.STRING,
-    //     allowNull: false,
-    //     validate:{
-    //         notEmpty: true
-    //     }
-    // },
-    // flag_active:{
-    //     type: DataTypes.STRING,
-    //     allowNull: false,
-    //     validate:{
-    //         notEmpty: true
-    //     }
-    // },
+    flag_active:{
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate:{
+            notEmpty: true
+        }
+    },
     nik:{
         type: DataTypes.STRING,
         allowNull: false,
@@ -81,16 +81,16 @@ const Users = db.define('users',{
             len: [3, 100]
         }
     },
-    no_tlf:{
+    created_by:{
         type: DataTypes.STRING,
         allowNull: false,
         validate:{
             notEmpty: true,
             len: [3, 100]
         }
-    },
-    // created_by:{
-    //     type: DataTypes.STRING,
+    }
+    // remember_token:{
+    //     type: DataTypes.TEXT,
     //     allowNull: false,
     //     validate:{
     //         notEmpty: true,

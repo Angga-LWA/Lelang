@@ -4,7 +4,7 @@ import argon2 from "argon2";
 export const getUsers = async(req, res) =>{
     try {
         const response = await User.findAll({
-            attributes:['id', 'username','first_name','last_name','email','password','nik','npwp','no_tlf']
+            attributes:['id', 'username','first_name','last_name','email','password','flag_active','nik','npwp','created_by']
         });
         res.status(200).json(response);
     } catch (error) {
@@ -15,7 +15,7 @@ export const getUsers = async(req, res) =>{
 export const getUserById = async(req, res) =>{
     try {
         const response = await User.findOne({
-            attributes:['id', 'username','first_name','last_name','email','password','nik','npwp','no_tlf'],
+            attributes:['id', 'username','first_name','last_name','email','password','flag_active','nik','npwp','created_by'],
             where: {
                 uuid: req.params.id
             }
@@ -27,7 +27,7 @@ export const getUserById = async(req, res) =>{
 }
 
 export const createUser = async(req, res) =>{
-    const {username, first_name, last_name, email, password, confPassword, nik, npwp, no_tlf} = req.body;
+    const {username, first_name, last_name, email, password, confPassword, flag_active, nik, npwp, created_by} = req.body;
     if(password !== confPassword) return res.status(400).json({msg: "Password sama confirm password gak sama..."});
     const hashPassword = await argon2.hash(password);
     try {
@@ -37,9 +37,10 @@ export const createUser = async(req, res) =>{
             last_name: last_name,
             email: email,
             password: password,
+            flag_active: flag_active,
             nik: nik,
             npwp: npwp,
-            no_tlf: no_tlf
+            created_by: created_by
         });
         res.status(201).json({msg: "Sukses Regis"});  
     } catch (error) {
@@ -54,7 +55,7 @@ export const updateUser = async(req, res) =>{
         }
     });
     if(!user) return res.status(404).json({msg: "User tidak ditemukan"});
-    const {username, first_name, last_name, email, password, confPassword, nik, npwp, no_tlf} = req.body;
+    const {username, first_name, last_name, email, password, confPassword, flag_active, nik, npwp, created_by} = req.body;
     let hashPassword;
     if(password === "" || password === null){
         hashPassword = user.password
@@ -69,9 +70,10 @@ export const updateUser = async(req, res) =>{
             last_name: last_name,
             email: email,
             password: password,
+            flag_active: flag_active,
             nik: nik,
             npwp: npwp,
-            no_tlf: no_tlf
+            created_by: created_by
         },{
             where:{
                 id: user.id
