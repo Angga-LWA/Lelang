@@ -4,6 +4,14 @@ import db from "../config/Database.js";
 const { DataTypes } = Sequelize;
 
 const Users = db.define('users',{
+    uuid:{
+        type: DataTypes.STRING,
+        defaultValue: DataTypes.UUIDV4,
+        allowNull: false,
+        validate:{
+            notEmpty: true
+        }
+    },
     username:{
         type: DataTypes.STRING,
         allowNull: false,
@@ -28,13 +36,6 @@ const Users = db.define('users',{
             len: [3, 100]
         }
     },
-    // profile_img:{
-    //     type: DataTypes.STRING,
-    //     allowNull: false,
-    //     validate:{
-    //         notEmpty: true
-    //     }
-    // },
     email:{
         type: DataTypes.STRING,
         allowNull: false,
@@ -50,13 +51,20 @@ const Users = db.define('users',{
             notEmpty: true
         }
     },
-    flag_active:{
-        type: DataTypes.STRING,
-        allowNull: false,
-        validate:{
-            notEmpty: true
-        }
-    },
+    // profile_img:{
+    //     type: DataTypes.STRING,
+    //     allowNull: false,
+    //     validate:{
+    //         notEmpty: true
+    //     }
+    // },
+    // flag_active:{
+    //     type: DataTypes.STRING,
+    //     allowNull: false,
+    //     validate:{
+    //         notEmpty: true
+    //     }
+    // },
     nik:{
         type: DataTypes.STRING,
         allowNull: false,
@@ -73,19 +81,20 @@ const Users = db.define('users',{
             len: [3, 100]
         }
     },
-    created_by:{
+    no_tlf:{
         type: DataTypes.STRING,
         allowNull: false,
         validate:{
             notEmpty: true,
-            len: [3,100]
+            len: [3, 100]
         }
-    }
-    // remember_token:{
+    },
+    // created_by:{
     //     type: DataTypes.STRING,
     //     allowNull: false,
     //     validate:{
-    //         notEmpty: true
+    //         notEmpty: true,
+    //         len: [3, 100]
     //     }
     // }
 },{
