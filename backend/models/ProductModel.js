@@ -44,14 +44,6 @@ const Products = db.define('mproduct',{
             len: [3, 100]
         }
     },
-    // prdimg:{
-    //     type: DataTypes.STRING,
-    //     allowNull: false,
-    //     validate:{
-    //         notEmpty: true,
-    //         len: [3, 100]
-    //     }
-    // },
     prddesc:{
         type: DataTypes.STRING,
         allowNull: false,

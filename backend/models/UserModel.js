@@ -36,13 +36,53 @@ const Users = db.define('users',{
             len: [3, 100]
         }
     },
-    // profile_img:{
-    //     type: DataTypes.STRING,
-    //     allowNull: false,
-    //     validate:{
-    //         notEmpty: true
-    //     }
-    // },
+    phone:{
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate:{
+            notEmpty: true,
+            len: [3, 100]
+        }
+    },
+    birthday:{
+        type: DataTypes.DATE,
+        allowNull: false,
+        validate:{
+            notEmpty: true,
+            len: [3, 100]
+        }
+    },
+    birthplace:{
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate:{
+            notEmpty: true,
+            len: [3, 100]
+        }
+    },
+    address_id:{
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate:{
+            notEmpty: true,
+            len: [3, 100]
+        }
+    },
+    address_domisili:{
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate:{
+            notEmpty: true,
+            len: [3, 100]
+        }
+    },
+    profile_img:{
+        type: DataTypes.TEXT,
+        allowNull: false,
+        validate:{
+            notEmpty: true
+        }
+    },
     email:{
         type: DataTypes.STRING,
         allowNull: false,
