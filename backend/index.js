@@ -16,6 +16,11 @@ import MigrationsRoute from "./routes/MigrationsRoute.js"
 import WardRoute from "./routes/WardRoute.js";
 import ProductImgRoute from "./routes/ProductImgRoute.js";
 import ProductTypeRoute from "./routes/ProductTypeRoute.js";
+import BankRoute from "./routes/BankRoute.js";
+import AuctionTypeRoute from "./routes/AuctionTypeRoute.js";
+import GuaranteeRoute from "./routes/GuaranteeRoute.js";
+import BeaNominalRoute from "./routes/BeaNominalRoute.js";
+import BeaTypeRoute from "./routes/BeaTypeRoute.js";
 dotenv.config();
 
 const app = express();
@@ -54,6 +59,11 @@ app.use(MigrationsRoute);
 app.use(WardRoute);
 app.use(ProductImgRoute);
 app.use(ProductTypeRoute);
+app.use(BankRoute);
+app.use(AuctionTypeRoute);
+app.use(GuaranteeRoute);
+app.use(BeaNominalRoute);
+app.use(BeaTypeRoute);
 
 app.listen(process.env.APP_PORT, () => {
     console.log('Server Lelang up and runnng!!');
