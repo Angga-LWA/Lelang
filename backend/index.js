@@ -25,6 +25,8 @@ import BlacklistRoute from "./routes/BlacklistRoute.js";
 import PpnRoute from "./routes/PpnRoute.js";
 import PasswordResetRoute from "./routes/PasswordResetRoute.js";
 import PersonalAccessTokenRoute from "./routes/PersonalAccessTokenRoute.js";
+import AuctionApplFeeRoute from "./routes/AuctionApplFeeRoute.js";
+import FailedJobRoute from "./routes/FailedJobRoute.js";
 dotenv.config();
 
 const app = express();
@@ -72,6 +74,8 @@ app.use(BlacklistRoute);
 app.use(PpnRoute);
 app.use(PasswordResetRoute);
 app.use(PersonalAccessTokenRoute);
+app.use(AuctionApplFeeRoute);
+app.use(FailedJobRoute);
 
 app.listen(process.env.APP_PORT, () => {
     console.log('Server Lelang up and runnng!!');
