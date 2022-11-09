@@ -21,6 +21,7 @@ import AuctionTypeRoute from "./routes/AuctionTypeRoute.js";
 import GuaranteeRoute from "./routes/GuaranteeRoute.js";
 import BeaNominalRoute from "./routes/BeaNominalRoute.js";
 import BeaTypeRoute from "./routes/BeaTypeRoute.js";
+import BlacklistRoute from "./routes/BlacklistRoute.js";
 dotenv.config();
 
 const app = express();
@@ -64,6 +65,7 @@ app.use(AuctionTypeRoute);
 app.use(GuaranteeRoute);
 app.use(BeaNominalRoute);
 app.use(BeaTypeRoute);
+app.use(BlacklistRoute);
 
 app.listen(process.env.APP_PORT, () => {
     console.log('Server Lelang up and runnng!!');
