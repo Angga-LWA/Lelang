@@ -27,6 +27,7 @@ import PasswordResetRoute from "./routes/PasswordResetRoute.js";
 import PersonalAccessTokenRoute from "./routes/PersonalAccessTokenRoute.js";
 import AuctionApplFeeRoute from "./routes/AuctionApplFeeRoute.js";
 import FailedJobRoute from "./routes/FailedJobRoute.js";
+import AuthRoute from "./routes/AuthRoute.js";
 dotenv.config();
 
 const app = express();
@@ -76,6 +77,7 @@ app.use(PasswordResetRoute);
 app.use(PersonalAccessTokenRoute);
 app.use(AuctionApplFeeRoute);
 app.use(FailedJobRoute);
+app.use(AuthRoute);
 
 app.listen(process.env.APP_PORT, () => {
     console.log('Server Lelang up and runnng!!');
