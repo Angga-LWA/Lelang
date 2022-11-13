@@ -1,5 +1,6 @@
 import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
+import Products from "./ProductModel.js";
 
 const { DataTypes } = Sequelize;
 
@@ -31,5 +32,8 @@ const ProductImg = db.define('mproduct_img',{
 },{
     freezeTableName: true
 });
+
+Products.hasMany(ProductImg);
+ProductImg.belongsTo(Products, {foreignKey: 'id_product'});
 
 export default ProductImg;

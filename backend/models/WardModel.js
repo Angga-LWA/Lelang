@@ -1,5 +1,8 @@
 import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
+import Branch from "./BranchModel.js";
+import Entity from "./EntityModel.js";
+import Region from "./RegionModel.js";
 
 const { DataTypes } = Sequelize;
 
@@ -55,5 +58,14 @@ const Ward = db.define('mward',{
 },{
     freezeTableName: true
 });
+
+Branch.hasMany(Ward);
+Ward.belongsTo(Branch, {foreignKey: 'id_branch'});
+
+Entity.hasMany(Ward);
+Ward.belongsTo(Entity, {foreignKey: 'id_entity'});
+
+Region.hasMany(Ward);
+Ward.belongsTo(Region, {foreignKey: 'id_region'});
 
 export default Ward;

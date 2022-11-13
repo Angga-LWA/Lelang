@@ -1,5 +1,6 @@
 import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
+import Region from "./RegionModel.js";
 
 const { DataTypes } = Sequelize;
 
@@ -39,5 +40,8 @@ const Entity = db.define('mentity',{
 },{
     freezeTableName: true
 });
+
+Region.hasMany(Entity);
+Entity.belongsTo(Region, {foreignKey: 'id_region'});
 
 export default Entity;

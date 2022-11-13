@@ -1,5 +1,6 @@
-import { Sequelize } from "sequelize";
+import { HasMany, Sequelize } from "sequelize";
 import db from "../config/Database.js";
+import AuctionType from "./AuctionTypeModel.js";
 
 const { DataTypes } = Sequelize;
 
@@ -23,5 +24,8 @@ const ProductType = db.define('mproduct_type',{
 },{
     freezeTableName: true
 });
+
+AuctionType.hasMany(ProductType);
+ProductType.belongsTo(AuctionType, {foreignKey: 'id_auctiontype'});
 
 export default ProductType;
