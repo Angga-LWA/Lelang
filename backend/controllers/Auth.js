@@ -31,12 +31,23 @@ export const Login = async (req, res) =>{
         maxAge: 24 * 60 * 60 * 1000
     });
     res.json({ accessToken });
-    // res.status(200).json({uuid, username, email, accessToken});
 }
 
-export const logOut = (req, res) =>{
-    req.session.destroy((err)=>{
-        if(err) return res.status(400).json({msg: "Tidak dapat logout"});
-        res.status(200).json({msg: "Anda telah logout"});
-    });
+export const logOut = async(req, res) =>{
+   const refreshToken = req.cookies.refreshToken;
+   if(!refreshToken) return res.sendStatus(204);
+   const user = await User.findAll({
+    where:{
+        refresh_token: refreshToken
+    }
+   });
+   if(!user[0]) return res.sendStatus(204);
+   const userId = user[0].id;
+   await User.update({refresh_token: null},{
+        where:{
+            id: userId
+        }
+   });
+   res.clearCookie('refreshToken');
+   return res.sendStatus(200);
 }

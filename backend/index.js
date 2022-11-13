@@ -2,6 +2,7 @@ import express from "express";
 import cors from "cors";
 import session from "express-session";
 import dotenv from "dotenv";
+import cookieParser from "cookie-parser";
 // import db from "./config/Database.js";
 import UserRoute from "./routes/UserRoute.js";
 import ProductRoute from "./routes/ProductRoute.js";
@@ -52,6 +53,7 @@ app.use(cors({
     //domain yg di ijinkan untuk akses API
     origin: 'http://localhost:3000'
 }));
+app.use(cookieParser());
 app.use(express.json());
 app.use(UserRoute);
 app.use(ProductRoute);
