@@ -51,4 +51,7 @@ const Guarantee = db.define('tguarantee',{
     freezeTableName: true
 });
 
+Users.hasMany(Guarantee);
+Guarantee.belongsTo(Users, {foreignKey: 'id_user'});
+
 export default Guarantee;
