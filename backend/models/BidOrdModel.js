@@ -1,5 +1,6 @@
 import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
+import Users from "./UserModel.js";
 
 const { DataTypes } = Sequelize;
 
@@ -39,5 +40,8 @@ const BidOrd = db.define('tbid_ord',{
 },{
     freezeTableName: true
 });
+
+Users.hasMany(BidOrd);
+BidOrd.belongsTo(Users, {foreignKey: 'id_user'});
 
 export default BidOrd;

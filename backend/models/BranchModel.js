@@ -1,5 +1,7 @@
 import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
+import Entity from "./EntityModel.js";
+import Region from "./RegionModel.js";
 
 const { DataTypes } = Sequelize;
 
@@ -47,5 +49,11 @@ const Branch = db.define('mbranch',{
 },{
     freezeTableName: true
 });
+
+Entity.hasMany(Branch);
+Branch.belongsTo(Entity, {foreignKey: 'id_entity'});
+
+Region.hasMany(Branch);
+Branch.belongsTo(Region, {foreignKey: 'id_region'});
 
 export default Branch;

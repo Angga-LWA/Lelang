@@ -1,5 +1,6 @@
 import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
+import Users from "./UserModel.js";
 
 const { DataTypes } = Sequelize;
 
@@ -39,5 +40,8 @@ const Blacklist = db.define('mblack_list',{
 },{
     freezeTableName: true
 });
+
+Users.hasMany(Blacklist);
+Blacklist.belongsTo(Users, {foreignKey: 'id_user'});
 
 export default Blacklist;

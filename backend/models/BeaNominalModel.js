@@ -1,5 +1,6 @@
 import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
+import BeaType from "./BeaTypeModel.js";
 
 const { DataTypes } = Sequelize;
 
@@ -23,5 +24,8 @@ const BeaNominal = db.define('mbea_nominal',{
 },{
     freezeTableName: true
 });
+
+BeaType.hasMany(BeaNominal);
+BeaNominal.belongsTo(BeaType, {foreignKey: 'id_beatype'});
 
 export default BeaNominal;

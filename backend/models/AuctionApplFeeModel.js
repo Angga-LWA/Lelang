@@ -1,5 +1,7 @@
 import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
+import AuctionType from "./AuctionTypeModel.js";
+import BeaNominal from "./BeaNominalModel.js";
 
 const { DataTypes } = Sequelize;
 
@@ -31,5 +33,11 @@ const AuctionApplFee = db.define('mauction_appl_fee',{
 },{
     freezeTableName: true
 });
+
+AuctionType.hasMany(AuctionApplFee);
+AuctionApplFee.belongsTo(AuctionType, {foreignKey: 'id_auctiontype'});
+
+BeaNominal.hasMany(AuctionApplFee);
+AuctionApplFee.belongsTo(BeaNominal, {foreignKey: 'id_beanominal'});
 
 export default AuctionApplFee;

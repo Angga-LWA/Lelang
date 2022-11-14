@@ -1,5 +1,6 @@
 import { Sequelize } from "sequelize";
 import db from "../config/Database.js";
+import ProductType from "./ProductTypeModel.js";
 
 const { DataTypes } = Sequelize;
 
@@ -23,5 +24,8 @@ const BeaType = db.define('mbea_type',{
 },{
     freezeTableName: true
 });
+
+ProductType.hasMany(BeaType);
+BeaType.belongsTo(ProductType, {foreignKey: 'id_prdtype'});
 
 export default BeaType;
