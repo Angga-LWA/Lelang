@@ -3,7 +3,7 @@ import cors from "cors";
 import session from "express-session";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
-import db from "./config/Database.js";
+// import db from "./config/Database.js";
 import UserRoute from "./routes/UserRoute.js";
 import ProductRoute from "./routes/ProductRoute.js";
 import CategoryRoute from "./routes/CategoryRoute.js";
@@ -31,11 +31,11 @@ import FailedJobRoute from "./routes/FailedJobRoute.js";
 import AuthRoute from "./routes/AuthRoute.js";
 dotenv.config();
 
-const app = express();
+// const app = express();
 
-(async() => {
-    await db.sync();
-})();
+// (async() => {
+//     await db.sync();
+// })();
 
 app.use(session({
     secret: process.env.SESS_SECRET,
