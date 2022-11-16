@@ -31,7 +31,8 @@ import FailedJobRoute from "./routes/FailedJobRoute.js";
 import AuthRoute from "./routes/AuthRoute.js";
 dotenv.config();
 
-// const app = express();
+//definisi app
+const app = express();
 
 // (async() => {
 //     await db.sync();
