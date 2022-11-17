@@ -128,6 +128,13 @@ const Users = db.define('users',{
             notEmpty: true,
             len: [3, 100]
         }
+    },
+    role:{
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate:{
+            notEmpty: true
+        }
     }
     // remember_token:{
     //     type: DataTypes.TEXT,

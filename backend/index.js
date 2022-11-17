@@ -3,7 +3,8 @@ import cors from "cors";
 import session from "express-session";
 import dotenv from "dotenv";
 import cookieParser from "cookie-parser";
-// import db from "./config/Database.js";
+import SequelizeStore from "connect-session-sequelize";
+import db from "./config/Database.js";
 import UserRoute from "./routes/UserRoute.js";
 import ProductRoute from "./routes/ProductRoute.js";
 import CategoryRoute from "./routes/CategoryRoute.js";
@@ -34,6 +35,12 @@ dotenv.config();
 //definisi app
 const app = express();
 
+// untuk menyimpan session saat login, dan user tidak akan logout jika server mati
+const sessionStore = SequelizeStore(session.Store);
+const store = new sessionStore({
+    db: db
+});
+
 // (async() => {
 //     await db.sync();
 // })();
@@ -42,6 +49,7 @@ app.use(session({
     secret: process.env.SESS_SECRET,
     resave: false,
     saveUninitialized: true,
+    store: store,
     cookie: {
         //setting secure nya automatis jika pake http atau https
         secure: 'auto'
@@ -81,6 +89,9 @@ app.use(PersonalAccessTokenRoute);
 app.use(AuctionApplFeeRoute);
 app.use(FailedJobRoute);
 app.use(AuthRoute);
+
+//buat table session untuk nyimpan data session
+// store.sync();
 
 app.listen(process.env.APP_PORT, () => {
     console.log('Server Lelang up and runnng!!');

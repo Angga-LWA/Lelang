@@ -4,7 +4,7 @@ import argon2 from "argon2";
 export const getUsers = async(req, res) =>{
     try {
         const response = await User.findAll({
-            attributes:['username','email','password']
+            attributes:['id','uuid','username','email','role']
         });
         res.status(200).json(response);
     } catch (error) {
@@ -15,7 +15,7 @@ export const getUsers = async(req, res) =>{
 export const getUserById = async(req, res) =>{
     try {
         const response = await User.findOne({
-            attributes:['id', 'username','first_name','last_name','phone','birthday','birthplace','address_id','address_domisili','profile_img','email','password','flag_active','nik','npwp','created_by'],
+            attributes:['id', 'username','first_name','last_name','phone','birthday','birthplace','address_id','address_domisili','profile_img','email','password','flag_active','nik','npwp','created_by','role'],
             where: {
                 uuid: req.params.id
             }
@@ -27,7 +27,7 @@ export const getUserById = async(req, res) =>{
 }
 
 export const createUser = async(req, res) =>{
-    const {username, first_name, last_name, phone, birthday, birthplace, address_id, address_domisili, profile_img, email, password, confPassword, flag_active, nik, npwp, created_by} = req.body;
+    const {username, first_name, last_name, phone, birthday, birthplace, address_id, address_domisili, profile_img, email, password, confPassword, flag_active, nik, npwp, created_by, role} = req.body;
     if(password !== confPassword) return res.status(400).json({msg: "Password sama confirm password gak sama..."});
     const hashPassword = await argon2.hash(password);
     try {
@@ -46,7 +46,8 @@ export const createUser = async(req, res) =>{
             flag_active: flag_active,
             nik: nik,
             npwp: npwp,
-            created_by: created_by
+            created_by: created_by,
+            role: role
         });
         res.status(201).json({msg: "Sukses Regis"});
     } catch (error) {
@@ -57,11 +58,11 @@ export const createUser = async(req, res) =>{
 export const updateUser = async(req, res) =>{
     const user = await User.findOne({
         where: {
-            id: req.params.id
+            uuid: req.params.id
         }
     });
     if(!user) return res.status(404).json({msg: "User tidak ditemukan"});
-    const {username, first_name, last_name, email, password, confPassword, flag_active, nik, npwp, created_by} = req.body;
+    const {username, first_name, last_name, phone, birthday, birthplace, address_id, address_domisili, profile_img, email, password, confPassword, flag_active, nik, npwp, created_by, role} = req.body;
     let hashPassword;
     if(password === "" || password === null){
         hashPassword = user.password
@@ -74,12 +75,19 @@ export const updateUser = async(req, res) =>{
             username: username,
             first_name: first_name,
             last_name: last_name,
+            phone: phone,
+            birthday: birthday,
+            birthplace: birthplace,
+            address_id: address_id,
+            address_domisili: address_domisili,
+            profile_img: profile_img,
             email: email,
             password: hashPassword,
             flag_active: flag_active,
             nik: nik,
             npwp: npwp,
-            created_by: created_by
+            created_by: created_by,
+            role: role
         },{
             where:{
                 id: user.id

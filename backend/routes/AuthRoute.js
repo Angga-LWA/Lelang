@@ -1,7 +1,8 @@
 import express from "express";
 import {
     Login,
-    logOut
+    logOut,
+    Me
 } from "../controllers/Auth.js";
 import { verifyToken } from "../middleware/VerifyToken.js";
 import { refreshToken } from "../controllers/RefreshToken.js";
@@ -9,6 +10,7 @@ import { refreshToken } from "../controllers/RefreshToken.js";
 const router = express.Router();
 
 router.get('/users', verifyToken);
+router.get('/me', Me);
 router.post('/login', Login);
 router.delete('/logout', logOut);
 router.get('/token', refreshToken);
