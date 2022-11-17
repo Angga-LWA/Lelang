@@ -60,13 +60,23 @@ Content-Type: application/json
 DELETE  http://localhost:8000/users/23175e65-cefd-45d9-a9c5-fd1e75244a89
 
 ###
-// Login User
+// Login Admin
 POST http://localhost:8000/login
 Content-Type: application/json
 
 {
     "email": "zaskiaraline11@gmail.com",
     "password": "umurraline2tahun!"
+}
+
+###
+// Login User
+POST http://localhost:8000/login
+Content-Type: application/json
+
+{
+    "email": "doctorbean31@gmail.com",
+    "password": "123sayangsemuanya"
 }
 
 ###
