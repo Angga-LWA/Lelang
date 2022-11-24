@@ -93,7 +93,7 @@ export const updateUser = async(req, res) =>{
                 id: user.id
             }
         });
-        res.status(200).json({msg: "Sukses Update"});
+        res.status(200).json({msg: "Sukses Update User"});
     } catch (error) {
         res.status(400).json({msg: error.message});
     }

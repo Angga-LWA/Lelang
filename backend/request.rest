@@ -91,3 +91,24 @@ DELETE  http://localhost:8000/logout
 ###
 // Get All Products
 GET http://localhost:8000/mproduct
+
+
+###
+// Create Products
+POST http://localhost:8000/mproduct
+Content-Type: application/json
+
+{
+    "id_region": "259239",
+    "id_entity": "3459823",
+    "id_branch": "2302452",
+    "prdcode": "12fsdf",
+    "prdname": "sjdfhljdf",
+    "prddesc": "dfjoefhoif[odbndslfigs",
+    "id_category": "3452039",
+    "price": "40000",
+    "min_multiples": "2000",
+    "location": "jkt",
+    "auction_date": "31 maret 2023",
+    "created_by": "sdfwf"
+}
