@@ -6,6 +6,7 @@ import {
 } from "../controllers/Auth.js";
 import { verifyToken } from "../middleware/VerifyToken.js";
 import { refreshToken } from "../controllers/RefreshToken.js";
+import { verifyUser, adminOnly } from "../middleware/AuthUser.js";
 
 const router = express.Router();
 
