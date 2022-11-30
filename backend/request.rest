@@ -90,7 +90,7 @@ DELETE  http://localhost:8000/logout
 
 ###
 // Get All Products
-GET http://localhost:8000/mproduct
+GET http://localhost:8000/mward
 
 
 ###
