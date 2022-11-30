@@ -6,13 +6,14 @@ import {
     updateGuarantee,
     deleteGuarantee
 } from "../controllers/Guarantee.js";
+import { verifyUser } from "../middleware/AuthUser.js";
 
 const router = express.Router();
 
-router.get('/tguarantee', getGuarantee);
-router.get('/tguarantee/:id', getGuaranteeById);
-router.post('/tguarantee', createGuarantee);
-router.patch('/tguarantee/:id', updateGuarantee);
-router.delete('/tguarantee/:id', deleteGuarantee);
+router.get('/tguarantee',verifyUser, getGuarantee);
+router.get('/tguarantee/:id',verifyUser, getGuaranteeById);
+router.post('/tguarantee',verifyUser, createGuarantee);
+router.patch('/tguarantee/:id',verifyUser, updateGuarantee);
+router.delete('/tguarantee/:id',verifyUser, deleteGuarantee);
 
 export default router;

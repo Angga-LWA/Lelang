@@ -1,8 +1,29 @@
 import Guarantee from "../models/GuaranteeModel.js";
-import argon2 from "argon2";
+import User from "../models/UserModel.js";
 
-export const getGuarantee = (req, res) => {
-   
+export const getGuarantee = async (req, res) => {
+   try {
+        let response;
+        if(req.role === "admin"){
+            response = await Guarantee.findAll({
+                include:[{
+                    model: User
+                }]
+            });
+        }else{
+            response = await Guarantee.findAll({
+                where:{
+                    id_user: req.id_user
+                },
+                include:[{
+                    model: User
+                }]
+            });
+        }
+        res.status(200).json(response);
+   } catch (error) {
+        res.status(500).json({msg: error.message});
+   }
 }
 
 export const getGuaranteeById = (req, res) => {
