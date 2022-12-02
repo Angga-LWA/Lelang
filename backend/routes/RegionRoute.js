@@ -6,13 +6,14 @@ import {
     updateRegion,
     deleteRegion
 } from "../controllers/Region.js";
+import { verifyUser } from "../middleware/AuthUser.js";
 
 const router = express.Router();
 
-router.get('/mregion', getRegions);
-router.get('/mregion/:id', getRegionById);
-router.post('/mregion', createRegion);
-router.patch('/mregion/:id', updateRegion);
-router.delete('/mregion/:id', deleteRegion);
+router.get('/mregion',verifyUser, getRegions);
+router.get('/mregion/:id',verifyUser, getRegionById);
+router.post('/mregion',verifyUser, createRegion);
+router.patch('/mregion/:id',verifyUser, updateRegion);
+router.delete('/mregion/:id',verifyUser, deleteRegion);
 
 export default router;
