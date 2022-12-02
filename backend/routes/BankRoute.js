@@ -6,13 +6,14 @@ import {
     updateBank,
     deleteBank
 } from "../controllers/Bank.js";
+import { verifyUser } from "../middleware/AuthUser.js";
 
 const router = express.Router();
 
-router.get('/mbank', getBanks);
-router.get('/mbank/:id', getBankById);
-router.post('/mbank', createBank);
-router.patch('/mbank/:id', updateBank);
-router.delete('/mbank/:id', deleteBank);
+router.get('/mbank',verifyUser, getBanks);
+router.get('/mbank/:id',verifyUser, getBankById);
+router.post('/mbank',verifyUser, createBank);
+router.patch('/mbank/:id',verifyUser, updateBank);
+router.delete('/mbank/:id',verifyUser, deleteBank);
 
 export default router;

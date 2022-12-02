@@ -6,13 +6,14 @@ import {
     updateFailedJob,
     deleteFailedJob
 } from "../controllers/FailedJob.js";
+import { verifyUser } from "../middleware/AuthUser.js";
 
 const router = express.Router();
 
-router.get('/failed_jobs', getFailedJobs);
-router.get('/failed_jobs/:id', getFailedJobById);
-router.post('/failed_jobs', createFailedJob);
-router.patch('/failed_jobs/:id', updateFailedJob);
-router.delete('/failed_jobs/:id', deleteFailedJob);
+router.get('/failed_jobs',verifyUser, getFailedJobs);
+router.get('/failed_jobs/:id',verifyUser, getFailedJobById);
+router.post('/failed_jobs',verifyUser, createFailedJob);
+router.patch('/failed_jobs/:id',verifyUser, updateFailedJob);
+router.delete('/failed_jobs/:id',verifyUser, deleteFailedJob);
 
 export default router;

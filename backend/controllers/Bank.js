@@ -1,8 +1,14 @@
 import Bank from "../models/BankModel.js";
-import argon2 from "argon2";
 
-export const getBanks = (req, res) => {
-   
+export const getBanks = async (req, res) => {
+    try {
+        const response = await Bank.findAll({
+            attributes:['type_name']
+        });
+        res.status(200).json(response);
+    } catch (error) {
+        res.status(500).json({msg: error.message});
+    }
 }
 
 export const getBankById = (req, res) => {

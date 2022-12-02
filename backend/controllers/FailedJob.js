@@ -1,8 +1,14 @@
 import FailedJob from "../models/FailedJobModel.js";
-import argon2 from "argon2";
 
-export const getFailedJobs = (req, res) => {
-   
+export const getFailedJobs = async (req, res) => {
+    try {
+        const response = await FailedJob.findAll({
+            attributes:['uuid','connection','queue','payload','exception','failed_at']
+        });
+        res.status(200).json(response);
+    } catch (error) {
+        res.status(500).json({msg: error.message});
+    }
 }
 
 export const getFailedJobById = (req, res) => {

@@ -90,7 +90,7 @@ DELETE  http://localhost:8000/logout
 
 ###
 // Get All Products
-GET http://localhost:8000/mbea_type
+GET http://localhost:8000/mauction_type
 
 
 ###
