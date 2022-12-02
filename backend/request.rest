@@ -90,7 +90,7 @@ DELETE  http://localhost:8000/logout
 
 ###
 // Get All Products
-GET http://localhost:8000/mblack_list
+GET http://localhost:8000/tbid_ord
 
 
 ###
