@@ -90,12 +90,17 @@ DELETE  http://localhost:8000/logout
 
 ###
 // Get All Products
-GET http://localhost:8000/mproduct
+GET http://localhost:8000/mward
+
+
+###
+// Get One Products
+GET http://localhost:8000/mward/1
 
 
 ###
 // Create Products
-POST http://localhost:8000/mproduct
+POST http://localhost:8000/mward
 Content-Type: application/json
 
 {
@@ -108,3 +113,8 @@ Content-Type: application/json
     "auction_date": "27 november 2022",
     "created_by": "admin"
 }
+
+
+###
+// Delete Products
+DELETE  http://localhost:8000/mward/1
