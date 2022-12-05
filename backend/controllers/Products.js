@@ -150,7 +150,7 @@ export const deleteProduct = async (req, res) => {
                 }
             });
         }
-        res.status(200).json({msg: "Product deleted successfuly"});
+        res.status(200).json({msg: "Product delete successfuly"});
    } catch (error) {
         res.status(500).json({msg: error.message});
    }
