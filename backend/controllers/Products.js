@@ -114,19 +114,44 @@ export const updateProduct = async (req, res) => {
                 }
             });
         }else{
-            
+            if(req.id_branch !== product.id_branch) return res.status(403).json({msg: "Akses Terlarang"});
             await Product.update({prdcode, prdname, prddesc, price, min_multiples, location, auction_date, created_by},{
                 where:{
                     [Op.and]:[{id: product.id}, {id_branch: req.id_branch, id_category: req.id_category, id_entity: req.id_entity, id_region: req.id_region}]
                 }
             });
         }
-        res.status(200).json(response);
+        res.status(200).json({msg: "Product Updated successfuly"});
    } catch (error) {
         res.status(500).json({msg: error.message});
    }
 }
 
-export const deleteProduct = (req, res) => {
-    
+export const deleteProduct = async (req, res) => {
+    try {
+        const product = await Product.findOne({
+            where:{
+                id: req.params.id
+            }
+        });
+        if(!product) return res.status(404).json({msg: "Data tidak ditemukan"});
+        const {prdcode, prdname, prddesc, price, min_multiples, location, auction_date, created_by} = req.body;
+        if(req.role === "admin"){
+            await Product.destroy({
+                where: {
+                    id: product.id
+                }
+            });
+        }else{
+            if(req.id_branch !== product.id_branch) return res.status(403).json({msg: "Akses Terlarang"});
+            await Product.destroy({
+                where:{
+                    [Op.and]:[{id: product.id}, {id_branch: req.id_branch, id_category: req.id_category, id_entity: req.id_entity, id_region: req.id_region}]
+                }
+            });
+        }
+        res.status(200).json({msg: "Product deleted successfuly"});
+   } catch (error) {
+        res.status(500).json({msg: error.message});
+   }
 }
