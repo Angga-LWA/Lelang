@@ -1,22 +1,27 @@
 import Guarantee from "../models/GuaranteeModel.js";
 import User from "../models/UserModel.js";
+import { Op } from "sequelize";
 
 export const getGuarantee = async (req, res) => {
    try {
         let response;
         if(req.role === "admin"){
             response = await Guarantee.findAll({
+                attributes:['prdcode','nominal','status','payment_proof','verified_by'],
                 include:[{
-                    model: User
+                    model: User,
+                    attributes:['uuid','username','first_name','last_name','phone','email','role']
                 }]
             });
         }else{
             response = await Guarantee.findAll({
+                attributes:['prdcode','nominal','status','payment_proof','verified_by'],
                 where:{
                     id_user: req.id_user
                 },
                 include:[{
-                    model: User
+                    model: User,
+                    attributes:['uuid','username','first_name','last_name','phone','email','role']
                 }]
             });
         }
@@ -26,12 +31,59 @@ export const getGuarantee = async (req, res) => {
    }
 }
 
-export const getGuaranteeById = (req, res) => {
-   
+export const getGuaranteeById = async (req, res) => {
+    try {
+        const guarantee = await Guarantee.findOne({
+            where:{
+                id: req.params.id
+            }
+        });
+        if(!guarantee) return res.status(404).json({msg: "Data tidak ditemukan"});
+        let response;
+        if(req.role === "admin"){
+            response = await Guarantee.findOne({
+                attributes:['prdcode','nominal','status','payment_proof','verified_by'],
+                where:{
+                    id: guarantee.id
+                },
+                include:[{
+                    model: User,
+                    attributes:['uuid','username','first_name','last_name','phone','email','role']
+                }]
+            });
+        }else{
+            response = await Guarantee.findOne({
+                attributes:['prdcode','nominal','status','payment_proof','verified_by'],
+                where:{
+                    [Op.and]:[{id: guarantee.id}, {id_user: req.id_user}]
+                },
+                include:[{
+                    model: User,
+                    attributes:['uuid','username','first_name','last_name','phone','email','role']
+                }]
+            });
+        }
+        res.status(200).json(response);
+   } catch (error) {
+        res.status(500).json({msg: error.message});
+   }
 }
 
-export const createGuarantee = (req, res) => {
-    
+export const createGuarantee = async (req, res) => {
+    const {prdcode, nominal, status, payment_proof, verified_by} = req.body;
+    try {
+        await Guarantee.create({
+            id_user: req.id_user,
+            prdcode: prdcode,
+            nominal: nominal,
+            status: status,
+            payment_proof: payment_proof,
+            verified_by: verified_by
+        });
+        res.status(201).json({msg: "Guarantee Created Successfuly"});
+    } catch (error) {
+        res.status(500).json({msg: error.message});
+    }
 }
 
 export const updateGuarantee = (req, res) => {
