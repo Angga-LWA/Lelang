@@ -37,7 +37,7 @@ export const getBlacklistById = async (req, res) => {
             where:{
                 id: req.params.id
             }
-        })
+        });
         if(!blacklist) return res.status(404).json({msg: "Data tidak ditemukan"});
         let response;
         if(req.role === "admin"){
